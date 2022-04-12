@@ -1,10 +1,11 @@
 import './App.css';
-import './components/navbar.js';
-import Navbar from './components/navbar.js';
-import Sidebar from './components/sidebar.js';
+import './components/Navbar.js';
+import Navbar from './components/Navbar.js';
+import TextForm from './components/TextForm';
+import About from './components/About';
+import Sidebar from './components/Sidebar.js';
 
 function App() {
-  let myName = "Krishna";
   return (
     <>
       <Navbar title="TextUtils" />
@@ -13,7 +14,9 @@ function App() {
           <div className="col">
             <div className="card">
               <div className="card-body">
-                <p>Hello this is <b>{myName}</b></p>
+                <TextForm heading="Enter your text to analyze" />
+                <hr className='my-4' />
+                <About/>
               </div>
             </div>
           </div>
