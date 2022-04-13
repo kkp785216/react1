@@ -39,6 +39,7 @@ export default function TextForm(props) {
             e.target.classList.add('btn-success');
             e.target.textContent = 'Copied';
             document.getElementById('myBox').select();
+            props.showAlert("text Copied to clipboard", "success");
             setTimeout(() => {
                 e.target.classList.remove('btn-success');
                 e.target.classList.add('btn-primary');
@@ -72,12 +73,13 @@ export default function TextForm(props) {
     function handleClear() {
         setText("");
     }
+
     return (
         <>
             <div className='my-3'>
                 <h1 className='mb-3'>{props.heading}</h1>
                 <div className="mb-3">
-                    <textarea type="text" name="myBox" className="form-control" onChange={handleChange} id="myBox" rows="10" value={text} placeholder="Enter your text here"></textarea>
+                    <textarea type="text" name="myBox" className="form-control" onChange={handleChange} id="myBox" rows="10" value={text} style={{backgroundColor: props.mode === "light"?"white":"#212529", color: props.mode === "light"?"black":"white"}} placeholder="Enter your text here"></textarea>
                 </div>
                 <div style={{ margin: "-.25rem" }}>
                     <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleUpperCase}>Upper Case</button>
