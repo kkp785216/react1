@@ -79,25 +79,25 @@ export default function TextForm(props) {
             <div className='my-3'>
                 <h1 className='mb-3'>{props.heading}</h1>
                 <div className="mb-3">
-                    <textarea type="text" name="myBox" className="form-control" onChange={handleChange} id="myBox" rows="10" value={text} style={{backgroundColor: props.mode === "light"?"white":"#212529", color: props.mode === "light"?"black":"white"}} placeholder="Enter your text here"></textarea>
+                    <textarea type="text" name="myBox" className="form-control" onChange={handleChange} id="myBox" rows="10" value={text} style={{ backgroundColor: props.mode === "light" ? "white" : "#212529", color: props.mode === "light" ? "black" : "white" }} placeholder="Enter your text here"></textarea>
                 </div>
                 <div style={{ margin: "-.25rem" }}>
-                    <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleUpperCase}>Upper Case</button>
-                    <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleLowerCase}>Lover Case</button>
-                    <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleProperCase}>Proper Case</button>
-                    <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleCopy}>Copy Text</button>
-                    <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleRemove}>Remove extra spaces</button>
-                    <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleRemoveEnter}>Remove Enter spaces</button>
-                    <button type="button" className="btn btn-primary btn-sm m-1" onClick={handleClear}>Clear Text</button>
+                    <button type="button" className="btn btn-primary btn-sm m-1" disabled={text.length===0} onClick={handleUpperCase}>Upper Case</button>
+                    <button type="button" className="btn btn-primary btn-sm m-1" disabled={text.length===0} onClick={handleLowerCase}>Lover Case</button>
+                    <button type="button" className="btn btn-primary btn-sm m-1" disabled={text.length===0} onClick={handleProperCase}>Proper Case</button>
+                    <button type="button" className="btn btn-primary btn-sm m-1" disabled={text.length===0} onClick={handleCopy}>Copy Text</button>
+                    <button type="button" className="btn btn-primary btn-sm m-1" disabled={text.length===0} onClick={handleRemove}>Remove extra spaces</button>
+                    <button type="button" className="btn btn-primary btn-sm m-1" disabled={text.length===0} onClick={handleRemoveEnter}>Remove Enter spaces</button>
+                    <button type="button" className="btn btn-primary btn-sm m-1" disabled={text.length===0} onClick={handleClear}>Clear Text</button>
                 </div>
             </div>
             <div>
                 <h1 className='mt-4'>Your text summary</h1>
                 <ul>
                     <li>{text.length} characters</li>
-                    <li>{text.match(/\n/g) != null ? text.match(/\n/g).length + 1 : text.length > 0 ? 1 : 0} lines</li>
-                    <li>{text.split(/[\S+]?\w+/g).length - 1} words</li>
-                    <li>{((text.split(/[\S+]?\w+/g).length - 1) * 0.008).toFixed(1)} minutes to read</li>
+                    <li>{text.match(/\n/g) !== null ? text.match(/\n/g).length + 1 : text.length > 0 ? 1 : 0} lines</li>
+                    <li>{text.split(/[\s+\n]/g).filter((element) => { return element !== 0 }).length} words</li>
+                    <li>{((text.split(/[\s+\n]/g).filter((element) => { return element !== 0 }).length) * 0.008).toFixed(1)} minutes to read</li>
                 </ul>
             </div>
         </>
