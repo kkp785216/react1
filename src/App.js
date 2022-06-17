@@ -69,29 +69,27 @@ function App() {
     }, 3000);
   }
   return (
-    <>
-      <Router>
-        <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} switchColorMode={switchColorMode} colorMode={colorMode} />
-        <Alert alert={alert} />
-        <div className="container">
-          <div className="row my-4">
-            <div className="col">
-              <div className="card" style={{ backgroundColor: mode === "light" ? "white" : "#444444", color: mode === "light" ? "black" : "white" }}>
-                <div className="card-body">
-                  <Routes>
-                    <Route exact path="/" element={<TextForm heading="Enter your text to analyze" mode={mode} showAlert={showAlert} />} />
-                    <Route exact path="/about" element={<About mode={mode} />} />
-                    <Route exact path="/*" element={<NotFound />} />
-                  </Routes>
-                  {/* <hr className='my-4' /> */}
-                </div>
+    <Router basename='/react1/'>
+      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} switchColorMode={switchColorMode} colorMode={colorMode} />
+      <Alert alert={alert} />
+      <div className="container">
+        <div className="row my-4">
+          <div className="col">
+            <div className="card" style={{ backgroundColor: mode === "light" ? "white" : "#444444", color: mode === "light" ? "black" : "white" }}>
+              <div className="card-body">
+                <Routes>
+                  <Route exact path="/" element={<TextForm heading="Enter your text to analyze" mode={mode} showAlert={showAlert} />} />
+                  <Route exact path="/about" element={<About mode={mode} />} />
+                  <Route exact path="/*" element={<NotFound />} />
+                </Routes>
+                {/* <hr className='my-4' /> */}
               </div>
             </div>
-            <Sidebar mode={mode} />
           </div>
+          <Sidebar mode={mode} />
         </div>
-      </Router>
-    </>
+      </div>
+    </Router>
   );
 }
 
